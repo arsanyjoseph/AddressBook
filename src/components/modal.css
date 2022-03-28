@@ -1,0 +1,9 @@
+
+
+#clear {
+    background-color: red;
+}
+
+#save:enabled {
+    background-color: green;
+}
