@@ -1,5 +1,5 @@
-const validateChecked = (i , k) => {
-    if (i.checked || k.checked) {
+const validateChecked = (i , k, l) => {
+    if (i.checked || k.checked || l.checked) {
         return true
     } else {
         return false

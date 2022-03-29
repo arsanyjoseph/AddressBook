@@ -93,9 +93,10 @@ class App extends Component {
     const radio2 = document.getElementById('business')
    
     const radio3 = document.getElementById('present')
-    const radio4 = document.getElementById('absent')
+    const radio4 = document.getElementById('permanent')
+    const radio5 = document.getElementById('both')
 
-    if (validateName(name) && validateMobile(mobile) && validateAddress(address) && validateCity(city) && validateStates(states) && validateZip(zip) && validateChecked(radio1, radio2) && validateChecked(radio3, radio4)) {
+    if (validateName(name) && validateMobile(mobile) && validateAddress(address) && validateCity(city) && validateStates(states) && validateZip(zip) && validateChecked(radio1, radio2) && validateChecked(radio3, radio4, radio5)) {
       return true
     } else {
       return false
@@ -164,7 +165,8 @@ class App extends Component {
     //write code for clearning  input fields
       e.preventDefault();
       document.getElementById('present').checked = false;
-      document.getElementById('absent').checked = false;
+      document.getElementById('permanent').checked = false;
+      document.getElementById('both').checked = false;
 
       document.getElementById('name').value = '';
       document.getElementById('address').value = '';

@@ -44,8 +44,11 @@ class Modal extends Component {
 
             <input type="radio" id="present" name="presenceType" value="present"/>
             <label htmlFor="present">Present</label>
-            <input type="radio" id="absent" name="presenceType" value="absent"/>
-            <label htmlFor="absent">Absent</label><br/>
+            <input type="radio" id="permanent" name="presenceType" value="permanent"/>
+            <label htmlFor="permanent">Permanent</label><br/>
+            <input type="radio" id="both" name="presenceType" value="permanent/present"/>
+            <label htmlFor="both">Both</label><br/>
+
 
             <button id= 'save' onClick={this.props.saveAction}>Submit</button>
             <button id = 'clear' onClick={this.props.clearAction}>Clear</button>
