@@ -7,29 +7,20 @@ class Modal extends Component {
       checked: false,
     }
 
-    handleChange = ()=> {
-      this.setState({
-        checked: true
-      })
-      setTimeout(()=> {
-        document.getElementById('save').disabled = true
-      }, 10)
-    }
-
   render() {
     return (
      <div className="modalContainer">
       <div className="formContainer">
           <h2>Fill Address Details</h2>
           <button onClick={this.props.cancelAction}>Close</button>
-          <form onChange={this.handleChange} >
+          <form onChange={this.props.handleChecked} >
             <input type="radio" id="personal" name="type" value="personal"/>
-            <label htmlFor="personal">personal</label>
+            <label htmlFor="personal">Personal</label>
             <input type="radio" id="business" name="type" value="business"/>
-            <label htmlFor="business">business</label><br/>
+            <label htmlFor="business">Business</label><br/>
           </form>
           {
-            this.state.checked == true &&
+            this.props.checked == true &&
           
           <form onChange={this.props.handleChange}>
 
@@ -51,10 +42,16 @@ class Modal extends Component {
             <label htmlFor="zip">ZipCode:</label><br/>
             <input type="number" id="zip" name="zip" required/><br/>
 
+            <input type="radio" id="present" name="presenceType" value="present"/>
+            <label htmlFor="present">Present</label>
+            <input type="radio" id="absent" name="presenceType" value="absent"/>
+            <label htmlFor="absent">Absent</label><br/>
+
             <button id= 'save' onClick={this.props.saveAction}>Submit</button>
             <button id = 'clear' onClick={this.props.clearAction}>Clear</button>
+
           </form>
-  }
+          }
           </div>
     </div>
     )}

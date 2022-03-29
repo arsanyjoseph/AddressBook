@@ -13,7 +13,7 @@ import {
 
 class App extends Component {
   state = {
-    checked: "",
+    checked: false,
     show: false,
     show_personal: true,
     name: "",
@@ -66,8 +66,20 @@ class App extends Component {
   onClose = (e) => {
     //write code for modal close
     e.preventDefault();
-    this.setState({show: false})    
+    this.setState({
+      show: false,
+      checked: false,
+    })    
   };
+
+  handleCheck = ()=> {
+    this.setState({
+      checked: true
+    })
+    setTimeout(()=> {
+      document.getElementById('save').disabled = true
+    }, 10)
+  }
 
   validateForm = () => {
     const name = document.getElementById('name').value;
@@ -79,8 +91,11 @@ class App extends Component {
 
     const radio1 = document.getElementById('personal')
     const radio2 = document.getElementById('business')
-    
-    if (validateName(name) && validateMobile(mobile) && validateAddress(address) && validateCity(city) && validateStates(states) && validateZip(zip) && validateChecked(radio1, radio2)) {
+   
+    const radio3 = document.getElementById('present')
+    const radio4 = document.getElementById('absent')
+
+    if (validateName(name) && validateMobile(mobile) && validateAddress(address) && validateCity(city) && validateStates(states) && validateZip(zip) && validateChecked(radio1, radio2) && validateChecked(radio3, radio4)) {
       return true
     } else {
       return false
@@ -90,7 +105,6 @@ class App extends Component {
 
   handleChange = (e) => {
     //write code to handle  inchange event for input fields
-    e.preventDefault(); 
     if(this.validateForm() == true) {
       document.getElementById('save').disabled = false;
     } else {
@@ -124,7 +138,7 @@ class App extends Component {
                   city: city,
                   states: states,
                   zip: zip,
-                  type: "present",
+                  type: document.querySelector('input[name="presenceType"]:checked').value,
                 }])
               })
             } else if (types[i].value == 'business') {
@@ -137,7 +151,7 @@ class App extends Component {
                   city: city,
                   states: states,
                   zip: zip,
-                  type: "present",
+                  type: document.querySelector('input[name="presenceType"]:checked').value,
                 }])
               })}
           }
@@ -146,10 +160,11 @@ class App extends Component {
    } };
 
   
-  handleClear = () => {
+  handleClear = (e) => {
     //write code for clearning  input fields
-      document.getElementById('business').checked = false;
-      document.getElementById('personal').checked = false
+      e.preventDefault();
+      document.getElementById('present').checked = false;
+      document.getElementById('absent').checked = false;
 
       document.getElementById('name').value = '';
       document.getElementById('address').value = '';
@@ -159,6 +174,14 @@ class App extends Component {
       document.getElementById('mobile').value = '';
 
       document.getElementById('save').disabled = true;
+
+      document.getElementById('business').checked = false;
+      document.getElementById('personal').checked = false;
+
+
+      this.setState({
+        checked: false
+      })
 
   };
 
@@ -194,6 +217,7 @@ class App extends Component {
               <th>States</th>
               <th>Mobile</th>
               <th>ZipCode</th>
+              <th>Type</th>
             </tr>
           </thead>
           <tbody>
@@ -208,6 +232,7 @@ class App extends Component {
                   <td>{item.states}</td>
                   <td>{item.mobile}</td>
                   <td>{item.zip}</td>
+                  <td>{item.type}</td>
                 </tr>
                 )
               })
@@ -224,6 +249,7 @@ class App extends Component {
                   <td>{item.states}</td>
                   <td>{item.mobile}</td>
                   <td>{item.zip}</td>
+                  <td>{item.type}</td>
                 </tr>
                 )
               })
@@ -235,7 +261,7 @@ class App extends Component {
       {
         this.state.show === true &&
         <div className="overlay" >
-        <Modal cancelAction = {(e)=> this.onClose(e)} saveAction = {(e)=>this.handleSave(e)} handleChange = {this.handleChange} clearAction = {this.handleClear}/>
+        <Modal handleChecked={this.handleCheck} checked= {this.state.checked} cancelAction = {(e)=> this.onClose(e)} saveAction = {(e)=>this.handleSave(e)} handleChange = {this.handleChange} clearAction = {(e)=>this.handleClear(e)}/>
         </div>
       }
       </div>
