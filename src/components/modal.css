@@ -7,3 +7,13 @@
 #save:enabled {
     background-color: green;
 }
+
+img {
+    cursor: pointer;
+    display: inline;
+    float: right;
+}
+
+.formContainer > h2 {
+    display: inline;
+}

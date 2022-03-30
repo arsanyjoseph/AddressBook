@@ -12,7 +12,7 @@ class Modal extends Component {
      <div className="modalContainer">
       <div className="formContainer">
           <h2>Fill Address Details</h2>
-          <button onClick={this.props.cancelAction}>Close</button>
+          <img onClick={this.props.cancelAction} src="https://upload.wikimedia.org/wikipedia/commons/c/c1/High-contrast-dialog-close.svg" alt="close"/>
           <form onChange={this.props.handleChecked} >
             <input type="radio" id="personal" name="type" value="personal"/>
             <label htmlFor="personal">Personal</label>
@@ -45,7 +45,7 @@ class Modal extends Component {
             <input type="radio" id="present" name="presenceType" value="present"/>
             <label htmlFor="present">Present</label>
             <input type="radio" id="permanent" name="presenceType" value="permanent"/>
-            <label htmlFor="permanent">Permanent</label><br/>
+            <label htmlFor="permanent">Permanent</label>
             <input type="radio" id="both" name="presenceType" value="permanent/present"/>
             <label htmlFor="both">Both</label><br/>
 
